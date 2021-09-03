@@ -2,7 +2,7 @@
  * @Description:入口
  * @Author: zk-chen
  * @Date: 2021-09-03 10:25:47
- * @LastEditTime: 2021-09-03 11:27:51
+ * @LastEditTime: 2021-09-03 11:39:50
  * @LastEditors: zk-chen
  * @FilePath: /Daily-Bonus-actions/index.js
  */
@@ -18,6 +18,7 @@ let score = 0;
 let itemName = '' //抽到了啥
 let normalFlag = true //正常标示
 
+const base_path = 'https://api.juejin.cn/growth_api/v1'
 const headers = {
   'content-type': 'application/json; charset=utf-8',
   'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
@@ -32,7 +33,7 @@ const headers = {
 // 抽奖
 const drawFn = async () => {
   // 查询今日是否有免费抽奖机会
-  const today = await fetch('https://api.juejin.cn/growth_api/v1/lottery_config/get', {
+  const today = await fetch(`${base_path}/lottery_config/get`, {
     headers,
     method: 'GET',
     credentials: 'include'
@@ -42,7 +43,7 @@ const drawFn = async () => {
   if (today.data.free_count === 0) return Promise.resolve('签到成功！今日已经免费抽奖！');
 
   // 免费抽奖
-  const draw = await fetch('https://api.juejin.cn/growth_api/v1/lottery/draw', {
+  const draw = await fetch(`${base_path}/lottery/draw`, {
     headers,
     method: 'POST',
     credentials: 'include'
@@ -65,7 +66,7 @@ const drawFn = async () => {
 // 签到
 (async () => {
   // 查询今日是否已经签到
-  const today_status = await fetch('https://api.juejin.cn/growth_api/v1/get_today_status', {
+  const today_status = await fetch(`${base_path}/get_today_status`, {
     headers,
     method: 'GET',
     credentials: 'include'
@@ -75,7 +76,7 @@ const drawFn = async () => {
   if (today_status.data) return Promise.resolve('今日已经签到！');
 
   // 签到
-  const check_in = await fetch('https://api.juejin.cn/growth_api/v1/check_in', {
+  const check_in = await fetch(`${base_path}/check_in`, {
     headers,
     method: 'POST',
     credentials: 'include'
@@ -86,7 +87,7 @@ const drawFn = async () => {
 })()
   .then((msg) => {
     console.log(msg);
-    return fetch('https://api.juejin.cn/growth_api/v1/get_cur_point', {
+    return fetch(`${base_path}/get_cur_point`, {
       headers,
       method: 'GET',
       credentials: 'include'
