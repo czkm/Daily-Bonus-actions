@@ -1,0 +1,27 @@
+{
+  "name": "daily-bonus-actions",
+  "version": "1.0.0",
+  "description": "掘金签到",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/czkm/Daily-Bonus-actions.git"
+  },
+  "keywords": [
+    "czkm"
+  ],
+  "author": "czkm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/czkm/Daily-Bonus-actions/issues"
+  },
+  "homepage": "https://github.com/czkm/Daily-Bonus-actions#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1",
+    "nodemailer": "^6.6.3"
+  }
+}
